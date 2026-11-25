@@ -1,4 +1,3 @@
-
 package com.example.skillforge;
 
 import android.os.Bundle;
