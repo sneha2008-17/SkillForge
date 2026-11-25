@@ -41,21 +41,44 @@
         android:layout_marginTop="8dp"/>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="Explore Careers"
-        android:layout_marginTop="30dp"/>
-
-    <Button
+        android:id="@+id/btnMySkills"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="My Skills"
+        android:layout_marginTop="25dp"/>
+
+    <Button
+        android:id="@+id/btnExploreCareers"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Career Explorer"
         android:layout_marginTop="12dp"/>
 
     <Button
+        android:id="@+id/btnSkillGap"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Skill Gap Analysis"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/btnRoadmap"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="Learning Roadmap"
         android:layout_marginTop="12dp"/>
 
+    <Button
+        android:id="@+id/btnJournal"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Learning Journal"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/btnProgress"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Progress Analytics"
+        android:layout_marginTop="12dp"/>
 </LinearLayout>
