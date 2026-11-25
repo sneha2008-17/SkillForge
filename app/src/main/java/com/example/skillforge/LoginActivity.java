@@ -14,11 +14,14 @@ public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button btnLogin;
     TextView tvRegister;
+    DatabaseHelper dbHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        dbHelper = new DatabaseHelper(this);
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -45,9 +48,22 @@ public class LoginActivity extends AppCompatActivity {
                 etPassword.setError("Please enter your password");
             }
             else {
-                Toast.makeText(LoginActivity.this,
-                        "Login button is working!",
-                        Toast.LENGTH_SHORT).show();
+                boolean validUser = dbHelper.checkUser(email, password);
+
+                if (validUser) {
+                    Toast.makeText(LoginActivity.this,
+                            "Login successful!",
+                            Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Toast.makeText(LoginActivity.this,
+                            "Invalid email or password",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

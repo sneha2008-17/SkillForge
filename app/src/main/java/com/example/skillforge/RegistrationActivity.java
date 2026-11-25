@@ -17,11 +17,14 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText etName, etRegEmail, etRegPassword, etConfirmPassword;
     Button btnRegister;
     TextView tvGoToLogin;
+    DatabaseHelper dbHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        dbHelper = new DatabaseHelper(this);
 
         etName = findViewById(R.id.etName);
         etRegEmail = findViewById(R.id.etRegEmail);
@@ -62,9 +65,20 @@ public class RegistrationActivity extends AppCompatActivity {
                     etConfirmPassword.setError("Passwords do not match");
                 }
                 else {
-                    Toast.makeText(RegistrationActivity.this,
-                            "Details validated successfully!",
-                            Toast.LENGTH_SHORT).show();
+                    boolean inserted = dbHelper.insertUser(name, email, password);
+
+                    if (inserted) {
+                        Toast.makeText(RegistrationActivity.this,
+                                "Registration successful!",
+                                Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        etRegEmail.setError("Email already registered or database error");
+                    }
                 }
             }
         });
