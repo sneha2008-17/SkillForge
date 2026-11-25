@@ -8,10 +8,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+
 
 public class MySkillsActivity extends AppCompatActivity {
 
@@ -19,6 +20,8 @@ public class MySkillsActivity extends AppCompatActivity {
     Spinner spinnerLevel;
     Button btnAddSkill;
     ListView listSkills;
+    String userEmail;
+    DatabaseHelper dbHelper;
 
     ArrayList<String> skills;
     ArrayAdapter<String> adapter;
@@ -27,6 +30,10 @@ public class MySkillsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_skills);
+        userEmail = getIntent().getStringExtra("USER_EMAIL");
+        Toast.makeText(this, "User: " + userEmail, Toast.LENGTH_LONG).show();
+
+        dbHelper = new DatabaseHelper(this);
 
         etSkillName = findViewById(R.id.etSkillName);
         spinnerLevel = findViewById(R.id.spinnerLevel);
@@ -76,7 +83,7 @@ public class MySkillsActivity extends AppCompatActivity {
 
         spinnerLevel.setAdapter(spinnerAdapter);
 
-        skills = new ArrayList<>();
+        skills = dbHelper.getSkills(userEmail);
 
         adapter = new ArrayAdapter<String>(
                 this,
@@ -105,15 +112,34 @@ public class MySkillsActivity extends AppCompatActivity {
             String level = spinnerLevel.getSelectedItem().toString();
 
             if (skillName.isEmpty()) {
-                etSkillName.setError("Please enter a skill");
-            } else {
-                skills.add(skillName + " - " + level);
-                adapter.notifyDataSetChanged();
-                etSkillName.setText("");
 
-                Toast.makeText(MySkillsActivity.this,
-                        "Skill added successfully!",
-                        Toast.LENGTH_SHORT).show();
+                etSkillName.setError("Please enter a skill");
+
+            } else {
+
+                boolean inserted = dbHelper.insertSkill(
+                        userEmail,
+                        skillName,
+                        level
+                );
+
+                if (inserted) {
+
+                    skills.add(skillName + " - " + level);
+                    adapter.notifyDataSetChanged();
+
+                    etSkillName.setText("");
+
+                    Toast.makeText(MySkillsActivity.this,
+                            "Skill saved in database!",
+                            Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    Toast.makeText(MySkillsActivity.this,
+                            "Unable to save skill",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
