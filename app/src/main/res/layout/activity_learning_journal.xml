@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FB"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Learning Journal"
+            android:textColor="#183153"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Reflect on your learning and keep track of your progress."
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="What did you learn today?"
+            android:textColor="#183153"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etLearning"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:gravity="top"
+            android:hint="Describe what you learned..."
+            android:padding="12dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Time spent learning (minutes)"
+            android:textColor="#183153"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etLearningTime"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:hint="e.g. 60"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Challenges faced"
+            android:textColor="#183153"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etChallenges"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:gravity="top"
+            android:hint="What was difficult?"
+            android:padding="12dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Key takeaways"
+            android:textColor="#183153"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etTakeaways"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:gravity="top"
+            android:hint="What will you remember?"
+            android:padding="12dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnSaveJournal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="25dp"
+            android:text="Save Journal Entry"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Previous Entries"
+            android:textColor="#183153"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvJournalEntries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:text="Your saved journal entries will appear here."
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "SkillForge.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public static final String TABLE_USERS = "users";
 
@@ -40,6 +40,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "skill_level TEXT)";
 
         db.execSQL(createSkillsTable);
+
+
+        String createJournalTable = "CREATE TABLE journal (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "user_email TEXT, " +
+                "learning TEXT, " +
+                "learning_time INTEGER, " +
+                "challenges TEXT, " +
+                "takeaways TEXT, " +
+                "entry_date TEXT)";
+        db.execSQL(createJournalTable);
+
     }
 
 
@@ -138,5 +150,151 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             db.execSQL(createSkillsTable);
         }
+
+
+        if (oldVersion < 3) {
+            String createJournalTable = "CREATE TABLE journal (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "user_email TEXT, " +
+                    "learning TEXT, " +
+                    "learning_time INTEGER, " +
+                    "challenges TEXT, " +
+                    "takeaways TEXT, " +
+                    "entry_date TEXT)";
+            db.execSQL(createJournalTable);
+        }
+
     }
+
+
+    public boolean insertJournal(
+            String email,
+            String learning,
+            int learningTime,
+            String challenges,
+            String takeaways,
+            String date) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        android.content.ContentValues values =
+                new android.content.ContentValues();
+
+        values.put("user_email", email);
+        values.put("learning", learning);
+        values.put("learning_time", learningTime);
+        values.put("challenges", challenges);
+        values.put("takeaways", takeaways);
+        values.put("entry_date", date);
+
+        long result = db.insert("journal", null, values);
+
+        db.close();
+
+        return result != -1;
+    }
+
+
+    public ArrayList<String> getJournalEntries(String email) {
+
+        ArrayList<String> entries = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        android.database.Cursor cursor = db.rawQuery(
+                "SELECT learning, learning_time, challenges, takeaways, entry_date " +
+                        "FROM journal WHERE user_email=? ORDER BY id DESC",
+                new String[]{email}
+        );
+
+        while (cursor.moveToNext()) {
+
+            String learning = cursor.getString(0);
+            int time = cursor.getInt(1);
+            String challenges = cursor.getString(2);
+            String takeaways = cursor.getString(3);
+            String date = cursor.getString(4);
+
+            String entry = "Date: " + date +
+                    "\nLearned: " + learning +
+                    "\nTime: " + time + " minutes" +
+                    "\nChallenges: " + challenges +
+                    "\nTakeaways: " + takeaways;
+
+            entries.add(entry);
+        }
+
+        cursor.close();
+        db.close();
+
+        return entries;
+    }
+
+
+
+    public int getTotalSkills(String email) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        android.database.Cursor cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM skills WHERE user_email=?",
+                new String[]{email}
+        );
+
+        int count = 0;
+
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        db.close();
+
+        return count;
+    }
+
+
+    public int getTotalJournalEntries(String email) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        android.database.Cursor cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM journal WHERE user_email=?",
+                new String[]{email}
+        );
+
+        int count = 0;
+
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        db.close();
+
+        return count;
+    }
+
+
+    public int getTotalLearningTime(String email) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        android.database.Cursor cursor = db.rawQuery(
+                "SELECT SUM(learning_time) FROM journal WHERE user_email=?",
+                new String[]{email}
+        );
+
+        int totalTime = 0;
+
+        if (cursor.moveToFirst()) {
+            totalTime = cursor.getInt(0);
+        }
+
+        cursor.close();
+        db.close();
+
+        return totalTime;
+    }
+
 }

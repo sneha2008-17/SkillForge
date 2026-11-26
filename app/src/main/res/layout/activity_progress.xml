@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FB"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress Analytics"
+            android:textColor="#183153"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Track your learning journey and see how far you have come."
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Your Overview"
+            android:textColor="#183153"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Total Skills -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Skills Added"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTotalSkills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0"
+                android:textColor="#183153"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Learning Time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Learning Time"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTotalLearningTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0 minutes"
+                android:textColor="#183153"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Journal Entries -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Journal Entries"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTotalJournalEntries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0"
+                android:textColor="#183153"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Keep Growing"
+            android:textColor="#183153"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:padding="18dp"
+            android:text="Every skill you learn and every minute you invest brings you closer to your goals. Stay consistent!"
+            android:textColor="#555555"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+</ScrollView>

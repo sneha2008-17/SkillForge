@@ -15,6 +15,31 @@
 
 
         <activity
+            android:name=".ProgressActivity"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".LearningJournalActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".RoadmapActivity"
+            android:exported="false" />
+
+
+
+
+        <activity
+            android:name=".SkillGapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ExploreCareerActivity"
+            android:exported="false" />
+
+
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
 

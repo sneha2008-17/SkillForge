@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FB"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Skill Gap Analysis"
+            android:textColor="#183153"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Find out which skills you need to develop for your dream career."
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Selected Career"
+            android:textColor="#183153"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSelectedCareer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:text="Software Developer"
+            android:textColor="#183153"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Your Skill Comparison"
+            android:textColor="#183153"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Compare your current level with the level required for this career."
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <!-- Skill 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Java"
+                android:textColor="#183153"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Your level: Beginner"
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Required level: Advanced"
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Skill gap: High"
+                android:textColor="#C0392B"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Skill 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SQL"
+                android:textColor="#183153"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Your level: Intermediate"
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Required level: Advanced"
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Skill gap: Medium"
+                android:textColor="#D68910"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Skill 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Problem Solving"
+                android:textColor="#183153"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Your level: Beginner"
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Required level: Intermediate"
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Skill gap: Medium"
+                android:textColor="#D68910"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCreateRoadmap"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="25dp"
+            android:text="Create Learning Roadmap"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+</ScrollView>

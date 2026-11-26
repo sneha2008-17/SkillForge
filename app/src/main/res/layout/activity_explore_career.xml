@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FB">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Career Explorer"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#183153"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discover careers that match your interests."
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginTop="6dp"/>
+
+        <EditText
+            android:id="@+id/etCareerSearch"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:background="#FFFFFF"
+            android:hint="Search careers"
+            android:textColor="#222222"
+            android:textColorHint="#999999"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explore Careers"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#183153"
+            android:layout_marginTop="24dp"/>
+
+        <!-- Career 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Software Developer"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#183153"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Design and develop software applications."
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Key skills: Java, Python, Problem Solving"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+        <!-- Career 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Analyst"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#183153"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Analyze data to identify patterns and support decisions."
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Key skills: Python, SQL, Statistics"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+        <!-- Career 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cybersecurity Analyst"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#183153"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Protect computer systems and investigate security risks."
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Key skills: Networking, Linux, Security"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+        <!-- Career 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Web Developer"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#183153"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Build and maintain websites and web applications."
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Key skills: HTML, CSS, JavaScript"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
