@@ -8,11 +8,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.graphics.Color;
+
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
 
 public class MySkillsActivity extends AppCompatActivity {
 
@@ -20,18 +23,19 @@ public class MySkillsActivity extends AppCompatActivity {
     Spinner spinnerLevel;
     Button btnAddSkill;
     ListView listSkills;
+
     String userEmail;
     DatabaseHelper dbHelper;
 
-    ArrayList<String> skills;
-    ArrayAdapter<String> adapter;
+    ArrayList<Skill> skills;
+    SkillAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_skills);
+
         userEmail = getIntent().getStringExtra("USER_EMAIL");
-        Toast.makeText(this, "User: " + userEmail, Toast.LENGTH_LONG).show();
 
         dbHelper = new DatabaseHelper(this);
 
@@ -40,6 +44,7 @@ public class MySkillsActivity extends AppCompatActivity {
         btnAddSkill = findViewById(R.id.btnAddSkill);
         listSkills = findViewById(R.id.listSkills);
 
+        // Skill proficiency levels
         String[] levels = {"Beginner", "Intermediate", "Advanced"};
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
@@ -48,30 +53,28 @@ public class MySkillsActivity extends AppCompatActivity {
                 levels
         ) {
             @Override
-            public android.view.View getView(int position,
-                                             android.view.View convertView,
-                                             android.view.ViewGroup parent) {
+            public View getView(int position, View convertView,
+                                ViewGroup parent) {
 
-                android.view.View view = super.getView(position, convertView, parent);
+                View view = super.getView(position, convertView, parent);
 
-                android.widget.TextView text = view.findViewById(android.R.id.text1);
-                text.setTextColor(android.graphics.Color.parseColor("#222222"));
+                TextView text = view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.parseColor("#222222"));
 
                 return view;
             }
 
             @Override
-            public android.view.View getDropDownView(int position,
-                                                     android.view.View convertView,
-                                                     android.view.ViewGroup parent) {
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
 
-                android.view.View view = super.getDropDownView(position, convertView, parent);
+                View view = super.getDropDownView(position, convertView, parent);
 
-                android.widget.TextView text = view.findViewById(android.R.id.text1);
+                TextView text = view.findViewById(android.R.id.text1);
 
-                text.setTextColor(android.graphics.Color.parseColor("#222222"));
-                text.setBackgroundColor(android.graphics.Color.WHITE);
-                view.setBackgroundColor(android.graphics.Color.WHITE);
+                text.setTextColor(Color.parseColor("#222222"));
+                text.setBackgroundColor(Color.WHITE);
+                view.setBackgroundColor(Color.WHITE);
 
                 return view;
             }
@@ -83,29 +86,20 @@ public class MySkillsActivity extends AppCompatActivity {
 
         spinnerLevel.setAdapter(spinnerAdapter);
 
+        // Load skills from SQLite
         skills = dbHelper.getSkills(userEmail);
 
-        adapter = new ArrayAdapter<String>(
+        // Connect custom adapter
+        adapter = new SkillAdapter(
                 this,
-                android.R.layout.simple_list_item_1,
-                skills
-        ) {
-            @Override
-            public android.view.View getView(int position,
-                                             android.view.View convertView,
-                                             android.view.ViewGroup parent) {
-
-                android.view.View view = super.getView(position, convertView, parent);
-
-                android.widget.TextView text = view.findViewById(android.R.id.text1);
-                text.setTextColor(android.graphics.Color.parseColor("#222222"));
-
-                return view;
-            }
-        };
+                skills,
+                dbHelper,
+                userEmail
+        );
 
         listSkills.setAdapter(adapter);
 
+        // Add skill button
         btnAddSkill.setOnClickListener(v -> {
 
             String skillName = etSkillName.getText().toString().trim();
@@ -125,23 +119,29 @@ public class MySkillsActivity extends AppCompatActivity {
 
                 if (inserted) {
 
-                    skills.add(skillName + " - " + level);
+                    // Reload skills from database
+                    skills.clear();
+                    skills.addAll(dbHelper.getSkills(userEmail));
+
                     adapter.notifyDataSetChanged();
 
                     etSkillName.setText("");
 
-                    Toast.makeText(MySkillsActivity.this,
+                    Toast.makeText(
+                            MySkillsActivity.this,
                             "Skill saved in database!",
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT
+                    ).show();
 
                 } else {
 
-                    Toast.makeText(MySkillsActivity.this,
+                    Toast.makeText(
+                            MySkillsActivity.this,
                             "Unable to save skill",
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT
+                    ).show();
                 }
             }
         });
     }
 }
-

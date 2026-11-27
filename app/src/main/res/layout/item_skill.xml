@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="17dp"
+    android:background="@drawable/bg_skill_card"
+    android:elevation="2dp">
+
+    <!-- Skill Name -->
+    <TextView
+        android:id="@+id/tvSkillName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Java"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:textColor="#202D4A"/>
+
+    <!-- Skill Level -->
+    <TextView
+        android:id="@+id/tvSkillLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beginner"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#6955BE"
+        android:paddingStart="11dp"
+        android:paddingEnd="11dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:layout_marginTop="9dp"
+        android:background="#F0ECFF"/>
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/btnEditSkill"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:text="Edit"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="#6350B5"
+            android:backgroundTint="#EEEAFE"
+            android:stateListAnimator="@null"/>
+
+        <Button
+            android:id="@+id/btnDeleteSkill"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="Delete"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="#C05265"
+            android:backgroundTint="#FCECEF"
+            android:stateListAnimator="@null"/>
+
+    </LinearLayout>
+
+</LinearLayout>

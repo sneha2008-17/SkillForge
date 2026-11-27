@@ -1,3 +1,4 @@
+
 package com.example.skillforge;
 
 import android.content.Context;
@@ -21,7 +22,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -41,7 +41,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(createSkillsTable);
 
-
         String createJournalTable = "CREATE TABLE journal (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "user_email TEXT, " +
@@ -50,16 +49,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "challenges TEXT, " +
                 "takeaways TEXT, " +
                 "entry_date TEXT)";
+
         db.execSQL(createJournalTable);
-
     }
-
 
     public boolean insertUser(String name, String email, String password) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        android.content.ContentValues values = new android.content.ContentValues();
+        android.content.ContentValues values =
+                new android.content.ContentValues();
 
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_EMAIL, email);
@@ -69,13 +68,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != -1;
     }
-
 
     public boolean checkUser(String email, String password) {
 
@@ -100,7 +94,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        android.content.ContentValues values = new android.content.ContentValues();
+        android.content.ContentValues values =
+                new android.content.ContentValues();
 
         values.put("user_email", email);
         values.put("skill_name", skillName);
@@ -113,23 +108,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public ArrayList<String> getSkills(String email) {
+    public ArrayList<Skill> getSkills(String email) {
 
-        ArrayList<String> skillList = new ArrayList<>();
+        ArrayList<Skill> skillList = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         android.database.Cursor cursor = db.rawQuery(
-                "SELECT skill_name, skill_level FROM skills WHERE user_email=?",
+                "SELECT id, skill_name, skill_level FROM skills WHERE user_email=?",
                 new String[]{email}
         );
 
         while (cursor.moveToNext()) {
 
-            String skillName = cursor.getString(0);
-            String skillLevel = cursor.getString(1);
+            int id = cursor.getInt(0);
+            String skillName = cursor.getString(1);
+            String skillLevel = cursor.getString(2);
 
-            skillList.add(skillName + " - " + skillLevel);
+            Skill skill = new Skill(id, skillName, skillLevel);
+            skillList.add(skill);
         }
 
         cursor.close();
@@ -137,6 +134,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return skillList;
     }
+
+    // Update an existing skill
+    public boolean updateSkill(int id, String email,
+                               String skillName, String skillLevel) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        android.content.ContentValues values =
+                new android.content.ContentValues();
+
+        values.put("skill_name", skillName);
+        values.put("skill_level", skillLevel);
+
+        int result = db.update(
+                "skills",
+                values,
+                "id=? AND user_email=?",
+                new String[]{String.valueOf(id), email}
+        );
+
+        db.close();
+
+        return result > 0;
+    }
+
+    // Delete a skill
+    public boolean deleteSkill(int id, String email) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int result = db.delete(
+                "skills",
+                "id=? AND user_email=?",
+                new String[]{String.valueOf(id), email}
+        );
+
+        db.close();
+
+        return result > 0;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -151,8 +189,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(createSkillsTable);
         }
 
-
         if (oldVersion < 3) {
+
             String createJournalTable = "CREATE TABLE journal (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "user_email TEXT, " +
@@ -161,19 +199,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "challenges TEXT, " +
                     "takeaways TEXT, " +
                     "entry_date TEXT)";
+
             db.execSQL(createJournalTable);
         }
-
     }
 
-
-    public boolean insertJournal(
-            String email,
-            String learning,
-            int learningTime,
-            String challenges,
-            String takeaways,
-            String date) {
+    public boolean insertJournal(String email, String learning,
+                                 int learningTime, String challenges,
+                                 String takeaways, String date) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -193,7 +226,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return result != -1;
     }
-
 
     public ArrayList<String> getJournalEntries(String email) {
 
@@ -230,8 +262,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return entries;
     }
 
-
-
     public int getTotalSkills(String email) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -252,7 +282,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return count;
     }
-
 
     public int getTotalJournalEntries(String email) {
 
@@ -275,7 +304,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-
     public int getTotalLearningTime(String email) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -296,5 +324,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return totalTime;
     }
-
 }
